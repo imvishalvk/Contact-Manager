@@ -13,7 +13,12 @@ function ContactList() {
         getData()
     }, [])
     console.log(contacts.profileImage)
-    
+    const deleteUser = async (id) => {
+        const confirmDelete = window.confirm("Are you sure you want to delete this contact?");
+        if (!confirmDelete) return;
+        await axiosInstance.delete(`/contacts/${id}`)
+        setContacts(contacts.filter((user) => user.id !== id))
+    }
     return (
         <>
             <nav>
@@ -34,7 +39,7 @@ function ContactList() {
                             <div className="d-flex justify-content-around">
                                 <Link to={`/viewcontact/${user.id}`} className="btn btn-success"><i className='fa fa-eye'></i></Link>
                                 <Link to={`/editcontact/${user.id}`} className="btn btn-warning"><i className='fa fa-edit'></i></Link>
-                                <Link to={`/delete/${user.id}`}  className="btn btn-danger"><i className='fa fa-delete-left'></i></Link>
+                                <Link onClick={deleteUser} className="btn btn-danger"><i className='fa fa-delete-left'></i></Link>
                             </div>
                         </div>
 

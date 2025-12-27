@@ -6,7 +6,7 @@ function AddContact() {
     const [contacts,setContacts] = useState({
         firstName:"",
         lastName:"",
-        numberCode:"",
+        numberCode:"+91",
         number:"",
         email:"",
         designation:"",
